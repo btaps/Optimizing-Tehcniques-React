@@ -1,9 +1,13 @@
 // src/AppRouter.tsx
 
-import React, { FunctionComponent, Suspense } from 'react'
+import React, { FunctionComponent, lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { RecoilRoot } from 'recoil'
 import App from './App'
+// import MyPage from './pages/MyPage/MyPage'
+
+// Lazy loading
+const MyPage = lazy(() => import('./pages/MyPage/MyPage'))
 
 const AppRouter: FunctionComponent = () => {
   return (
@@ -12,6 +16,7 @@ const AppRouter: FunctionComponent = () => {
         <Suspense fallback={<span>Loading...</span>}>
           <Switch>
             <Route exact path="/" component={App} />
+            <Route exact path="/MyPage" component={MyPage} />
           </Switch>
         </Suspense>
       </RecoilRoot>
